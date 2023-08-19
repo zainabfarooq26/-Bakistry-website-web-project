@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+  background-image: url("/static/image/adminPic.jpeg");
+}
+.hsc{
+
+    color: white;
+    width: 100%;
+}
+.i{
+    background-color: white;
+}
+.m{
+    margin-right: 100px;
+}
+</style>
+
+
+
+<header id="header">
+    <nav>
+            <div class="container">
+                <div class="hsc text-center">
+                    <h1>Birthday Cake Details</h1>
+                    </div>
+            </div>
+    </nav>
+    </header>
+<main id="site-main">
+<div class="container2">
+            <center><div class=" box-nav d-flex justify-between">
+                <a href="/addCake" class="border-shadow">
+                    <div class="btn nu">
+                    <span class="i">New Cake <i class="fas fa-user"></i></span>
+                        <div class="btn"> <a href="/updateCake" class="btn border-shadow update">
+                             <i class="i fas fa-pencil-alt"></i>
+                            </a>
+                            <a class="btn border-shadow update" href="/delCake">
+                                <span class="text-gradient text-black"><i class="i fas fa-times"></i> </span>
+                            </a></div>
+                    </div>
+                </a>
+            </div><br></center>
+<table id="show" border="2">
+    <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Description</th>
+                <!--<th>Image</th>-->
+
+            </tr>
+        </thead>
+
+</table>
+</div>
+    <div class="container">
+    <a class="white" href="/admin">Go Back</a>
+</div>
+</main>
+    <script>
+        var myData
+        $(document.body).ready(function (e) {
+           //doStuff
+            console.log("hello")
+                 $.ajax({type:"GET",
+                     url:"/api/cake",
+                     success: function(result){
+                         myData = result
+                         console.log(myData)
+                         if(myData !=null || myData !=""){
+                            table = $('#show').DataTable( {
+                                data: myData ,destroy: true,
+                                columns: [
+                                    { data: 'Name' },
+                                    { data: 'Price' },
+                                    { data: 'Quantity' },
+                                    { data: 'Description' },
+                                    <!--{ data: 'Image' },-->
+                                ]
+                            } );
+                        }
+
+                  }});
+        });
+
+
+    </script>
+    {% endblock %}

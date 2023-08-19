@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="/static/cardStyle.css">
+</head>
+
+<style>
+body {
+  background-image: url("/static/image/adminPic.jpeg");
+}
+.hsc{
+
+    color: rgb(14, 13, 13);
+    width: 100%;
+}
+.i{
+    background-color: rgb(18, 17, 17);
+}
+.m{
+    margin-right: 100px;
+}
+</style>
+
+
+
+<!--
+<header id="header">
+    <nav>
+            <div class="container">
+                <div  class=" hsc text-center">
+                    <h1>Birthday Cake Details</h1>
+                    </div>
+            </div>
+    </nav>
+    </header>
+    -->
+<main id="site-main">
+<table id="show" border="2">
+    <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Remove</th>
+                <!--<th>Image</th>-->
+
+            </tr>
+        </thead>
+
+</table>
+</div>
+    <div class="container">
+       <a href="/payment"><button style="font-size: 18px; border-radius:2rem;background-color:   #EAA636; width:100px;height:50px;color:white">Pay Now</button></a>
+
+    <h3 id="total"></h3>
+</div>
+</main>
+<center>
+    <a href="/orederCustom"><button style="font-size: 18px; border-radius:2rem;background-color:   #EAA636; width:100px;height:50px;color:white">Go Back</button></a>
+
+</center>
+
+<script>
+        let dataa = [];
+        $(document.body).ready(function (e) {
+            console.log("hello")
+                 $.ajax({
+                    type:"GET",
+                     url:"/api/getCartInfo",
+                     success: function(result){
+                         let myData = result
+                         let price = 0;
+                         for(let i of myData)
+                         {
+                            price = parseInt(price) + parseInt(i['price']);
+                            i['remove'] = '<p onclick="remove(this)"><a>Remove</a></p>';
+                         }
+
+                         $('#total').append(`Total: ${price}`);
+                         for(let i of myData)
+                         {
+                            dataa.push(i)
+                         }
+                         if(myData !=null || myData !=""){
+                            table = $('#show').DataTable( {
+                                data: myData ,destroy: true,
+
+                                columns: [
+                                    { data: 'name' },
+                                    { data: 'price' },
+                                    { data: 'count' },
+                                    { data: 'type' },
+                                    {data :'remove'}
+                                    // <!--{ data: 'Image' },-->
+                                ]
+                            } );
+                        }
+                  },
+                  error:function(resp)
+                  {
+                    console.log(resp);
+                  }
+                });
+        });
+
+        function remove(obj)
+        {
+            let count = parseInt($(obj).parent().prev().prev().text());
+            let name = $(obj).parent().prev().prev().prev().prev().text()
+
+            let countt = 0;
+            for(let i of dataa)
+            {
+                if(name == i.name)
+                {
+                    i.count = i.count - 1;
+                    if(i.count == 0)
+                    {
+                        console.log('before', dataa);
+                        dataa.splice(countt, 1);
+                        console.log('after', dataa);
+                    }
+                    else
+                    {
+                        dataa[i] = i;
+                    }
+                    break;
+                }
+                countt = countt + 1;
+            }
+            dataJS = JSON.stringify(dataa);
+            console.log(dataJS);
+            $.ajax({
+                url:'/api/updateCart',
+                type:'POST',
+                contentType:'application/js',
+                data:dataJS,
+                success:function(response)
+                {
+                    console.log(response);
+                }
+            })
+            if(dataa !=null || dataa !=""){
+                            table = $('#show').DataTable( {
+                                data: dataa ,destroy: true,
+
+                                columns: [
+                                    { data: 'name' },
+                                    { data: 'price' },
+                                    { data: 'quantity' },
+                                    { data: 'category' },
+                                    {data :'remove'}
+                                ]
+                            } );
+                        }
+        }
+
+
+    </script>
+
+{% endblock %}

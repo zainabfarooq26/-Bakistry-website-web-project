@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    body {
+  background-image: url("/static/image/adminPic.jpeg");
+}
+    .h1
+    {
+        background-color:   #EAA636;
+        color: white;
+
+    }
+    .top{
+
+        margin-top: 120px;
+    }
+    .bc{
+        background-color: white;
+    }
+
+    </style>
+
+    <header id="header">
+           <div>
+                <div class=" h1 text-center">
+                    <h1>Update User</h1>
+                    </div>
+            </div>
+    </header>
+    <main id="site-main">
+        <div class="container2 top">
+            <div class="box-nav d-flex justify-between">
+                <div class="filter">
+                    <div class="bc"><a href="/user"><i class="fas fa-angle-double-left"></i>All Users </a></div>
+                </div>
+            </div>
+            <div class="form-title text-center">
+                <h2 style="color:   #EAA636">Update User</h2>
+                <br><b><span style="color: whitesmoke;margin-top: 10px" class="fw-bold">Use the bellow form to update account</span></b>
+            </div>
+        <center>
+           <form id="form" action="/updateMess">
+            <br>Name: <input type="text" name="Name" required="required"><br>
+            <br>Email: <input type="text" name="Email" required="required"><br>
+            <br><input id="submit" type="submit" name="submit" value="submit">
+            </form>
+            </center>
+        </div>
+    </main>
+<script>
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(){
+            // send ajax
+            var formdata = $("#form").serializeArray();
+            var data = {};
+            console.log(formdata)
+            $(formdata ).each(function(index, obj){
+                data[obj.name] = obj.value;
+            });
+            data=JSON.stringify(data)
+            console.log(data)
+            $.ajax({
+                url: '/api/customers', // url where to submit the request
+                type : "PUT", // type of action POST || GET
+                data : data, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result);
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+
+        });
+    });
+    </script>
+
+    {% endblock %}

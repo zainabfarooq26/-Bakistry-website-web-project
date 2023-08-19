@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <style>
+body {
+  background-color: whitesmoke;
+}
+.pass {
+    background-image: url("/static/image/cnfrm.jpeg");
+    margin-top: 20px;
+    margin-left: 300px;
+    font-size: medium;
+    font-weight: bold;
+}
+.text{
+    margin-top: 20px;
+    color: whitesmoke;
+}
+</style>
+
+<div class="card text-center pass" style="width: 800px; height: 600px;">
+    <p class="text">Hello! We are happy to let you know that we have received your order.</p>
+    <p class="text">For any query or any information <a style="color: goldenrod" href="/contact">contact us here</a></p>
+    <p class="text">Go Back <a href="/">Click here</a></p>
+</div>
+{% endblock %}

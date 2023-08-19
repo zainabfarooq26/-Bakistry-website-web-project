@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body class="admbgImg">
+   <h class="admin_h">Dashboard</h>
+    <div>
+        <span class="admin_menu">Menu</span>
+        <li class="nav-item dashBoard_link">
+          <a class="dropdown-toggle" style="text-decoration: none;color: goldenrod" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Cakes Details
+          </a>
+          <ul class="dropdown-menu" >
+            <li><a class="dropdown-item a_link nav-link1" href="/showCust">Custom</a></li>
+            <li><a class="dropdown-item a_link nav-link1" href="/showCake">Birthday</a></li>
+            <li><a class="dropdown-item a_link nav-link1" href="/showWed">Wedding</a></li>
+          </ul>
+        </li>
+          <li class="nav-item dashBoard_link">
+          <a href="/showChef" style="text-decoration: none;color: goldenrod">Master chief</a>
+        </li>
+        <li class="nav-item dashBoard_link">
+          <a href="/user" style="text-decoration: none;color: goldenrod">User Details</a>
+        </li>
+        <li class="nav-item dashBoard_link">
+          <a href="/showPayment" style="text-decoration: none;color: goldenrod">Payment</a>
+        </li>
+        <li class="nav-item dashBoard_link">
+          <a href="/showFeedback" style="text-decoration: none;color: goldenrod">User Message</a>
+        </li>
+        <div>
+        <a href="/">
+            <button class="solarbtn headerbtn adminBtn">Log Out</button>
+            </a>
+        </div>
+    </div>
+    {% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="wrapper">
+        <h2 style="font-weight: bold" class="text-white">Payment form</h2>
+        <center><img src="/static/image/pyment3.jpeg"></center><br>
+        <form id="form" action="/paymentDone">
+
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" placeholder="Full Name" required="required" class="name" name="name">
+                    <i class="fa fa-user icon"></i>
+                </div><br>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="email" placeholder="Email" required="required" class="name" name="email">
+                    <i class="fa fa-envelope icon"></i>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="tel" placeholder="Card Number" required="required" class="name" name="card_Number">
+                    <i class="fa fa-credit-card icon"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" placeholder="Address" required="required" class="name" name="user_Address">
+                    <i class="fa fa-address-card icon"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" required="required" placeholder="Total" class="name" name="amount">
+                    <i class="	fa fa-list-alt icon" ></i>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="paybtn">
+                    <button style="background-color:   #EAA636" type="submit" id="submit">PAY NOW</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% endblock %}

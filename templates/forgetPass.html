@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="log_container">
+    <h1 class="log_label" style="color: #EAA636; position: relative; z-index: 2;">Bakistry</h1>
+    <form name="form" id="form" action="/passUpdate" onsubmit="return validation()">
+        <div class="card log_card" style="background-color: black; width: 450px; height: 450px;">
+            <div class="card-header h5 text-white bg-dark">Password Reset</div>
+            <div class="card-body px-4">
+                <div class="form-group">
+                    <label for="Email" style="color: #EAA636;">Email</label>
+                    <input type="email" id="Email" autocomplete="off" required="required" class="form-control my-3" name="Email">
+                </div>
+                <div class="form-group">
+                    <label for="password" style="color: #EAA636;">New Password</label>
+                    <input type="password" id="password" autocomplete="off" required="required" class="form-control my-3" name="Password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" style="color: #EAA636;">Confirm Password</label>
+                    <input type="password" id="confirmPassword" autocomplete="off" required="required" class="form-control my-3" style="background-color: #333; color: #EAA636;">
+                </div>
+                <button class="btn rounded-pill my-3" type="submit" style="background-color: #EAA636; color: rgb(221, 211, 211);">Reset Password</button>
+                <div class="d-flex justify-content-between mt-4">
+                    <div style="margin: 20px 10px">
+                        <a href="/login" class="noAcc" style="color: #EAA636;">Login</a>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <a href="/register" class="noAcc" style="color: #EAA636;">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/static/index.js"></script>
+
+{% endblock %}

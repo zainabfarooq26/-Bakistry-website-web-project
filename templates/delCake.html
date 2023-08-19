@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    body {
+  background-image: url("/static/image/adminPic.jpeg");
+}
+    .h1
+    {
+        background-color:   #EAA636;
+         color: white;
+
+    }
+    .top{
+
+        margin-top: 150px;
+    }
+    .bc{
+        background-color: white;
+        margin-right: 10px;
+    }
+
+    </style>
+
+<div>
+    <div class=" h1 text-center">
+                    <h1>Delete Cake</h1>
+    </div>
+</div>
+<main id="site-main">
+        <div class="container2 top">
+<center>
+    <div class="box-nav d-flex justify-between">
+            <div class="filter">
+                <div class="bc"> <a href="/showCake"><i class="fas fa-angle-double-left"></i>All Cake </a></div>
+            </div>
+    </div>
+        <form action="/delUserMes" id="form">
+                   Name: <input type="text" name="Name" required="required"><br>
+            <br><input style="background-color:   #EAA636" id="submit" type="submit" name="submit" value="submit">
+        </form>
+</center>
+</div>
+</main>
+<script>
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(){
+            // send ajax
+            var formdata = $("#form").serializeArray();
+            var data = {};
+            var id;
+            $(formdata ).each(function(index, obj){
+                data[obj.name] = obj.value;
+                id = obj.value;
+            });
+            var Name=data["Name"]
+            console.log(Name)
+            data=JSON.stringify(data)
+            console.log(data)
+            $.ajax({
+                url: '/api/deleteCake/'+Name, // url where to submit the request
+                type : "Delete", // type of action POST || GET
+                data : data, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result);
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+
+        });
+    });
+    </script>
+
+{% endblock %}

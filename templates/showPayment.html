@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+  background-image: url("/static/image/adminPic.jpeg");
+}
+.hsc{
+
+    color: white;
+    width: 100%;
+}
+.i{
+    background-color: white;
+}
+.m{
+    margin-right: 100px;
+}
+</style>
+
+
+
+<header id="header">
+    <nav>
+            <div class="container">
+                <div  class=" hsc text-center">
+                    <h1>Payment Details</h1>
+                    </div>
+            </div>
+    </nav>
+    </header>
+<main id="site-main">
+<div class="container">
+
+<table id="show" border="2">
+    <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Count</th>
+                <th>Type</th>
+                <!--<th>Image</th>-->
+
+            </tr>
+        </thead>
+
+</table>
+</div>
+    <div class="container">
+    <a class="white" href="/admin">Go Back</a>
+</div>
+</main>
+    <script>
+        var myData
+        $(document.body).ready(function (e) {
+           //doStuff
+            console.log("hello")
+                 $.ajax({type:"GET",
+                     url:"/api/getPayment",
+                     success: function(result){
+                         myData = result
+                         console.log(myData)
+                         if(myData !=null || myData !=""){
+                            table = $('#show').DataTable( {
+                                data: myData ,destroy: true,
+                                columns: [
+                                    { data: 'Name' },
+                                    { data: 'Emali' },
+                                    { data: 'count' },
+                                    { data: 'type' },
+                                    <!--{ data: 'Image' },-->
+                                ]
+                            } );
+                        }
+
+                  }});
+        });
+
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+from .resource import CustomersApi,MessageApi,getCartInfo, UpdateCart,PaymentApi,deleteUser,CakeApi,addItem,deleteCake,masterChefApi,deleteChef,WedCakeApi,deleteWedCake,CustCakeApi,deleteCustCake,orderCustApi,getPayment,orderBrdyApi,orderWedApi
+def initialize_routes(api):
+    api.add_resource(CustomersApi, '/api/customers')
+    api.add_resource(MessageApi, '/api/message')
+    api.add_resource(PaymentApi, '/api/payment')
+    api.add_resource(deleteUser, '/api/deleteUser/<Name>')
+    api.add_resource(WedCakeApi, '/api/Wed_cake')
+    api.add_resource(deleteWedCake, '/api/deleteWedCake/<Name>')
+    api.add_resource(CakeApi, '/api/cake')
+    api.add_resource(deleteCake, '/api/deleteCake/<Name>')
+    api.add_resource(CustCakeApi, '/api/cust_cake')
+    api.add_resource(deleteCustCake, '/api/deleteCustCake/<Name>')
+    api.add_resource(masterChefApi, '/api/masterChef')
+    api.add_resource(deleteChef, '/api/deleteChef/<m_Name>')
+    api.add_resource(orderCustApi, '/api/orderCust')
+    api.add_resource(orderBrdyApi, '/api/orderBrdy')
+    api.add_resource(orderWedApi, '/api/orderWed')
+    api.add_resource(getPayment, '/api/getPayment')
+
+    api.add_resource(addItem, '/api/addItem')
+    api.add_resource(getCartInfo, '/api/getCartInfo')
+    api.add_resource(UpdateCart, '/api/updateCart')
